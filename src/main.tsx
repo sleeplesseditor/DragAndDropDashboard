@@ -1,5 +1,6 @@
 import Card from "@components/Card";
 import { createRoot } from "react-dom/client";
+import './index.css';
 
 function App() {
   return (
