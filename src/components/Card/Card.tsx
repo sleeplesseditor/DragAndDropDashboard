@@ -7,16 +7,14 @@ let zCounter = 1;
 
 function Card({
   title,
-  leftPct = 0,
-  topPct = 0,
-  w = 200,
-  h = 130,
+  x,
+  y,
+  onRemove,
 }: {
   title: string;
-  leftPct?: number;
-  topPct?: number;
-  w?: number;
-  h?: number;
+  x: number;
+  y: number;
+  onRemove?: () => void;
 }) {
   const [zIndex, setZIndex] = React.useState(1);
 
@@ -32,10 +30,10 @@ function Card({
       className="draggable-card__container"
       ref={nodeRef}
       style={{
-        left: `${leftPct}%`,
-        top: `${topPct}%`,
-        width: w,
-        height: h,
+       left: x,
+        top: y,
+        width: 200,
+        height: 130,
         zIndex,
       }}
     >
@@ -50,12 +48,14 @@ function Card({
       </div>
 
       <div style={{ padding: 12, fontSize: 14 }}>
-        <button
-          className="draggable-card__reset-button"
-          onClick={reset}
-        >
-          Reset
-        </button>
+        {onRemove && (
+          <button
+            className="draggable-card__reset-button"
+            onClick={() => onRemove()}
+          >
+            Reset
+          </button>
+        )}
       </div>
     </div>
   );

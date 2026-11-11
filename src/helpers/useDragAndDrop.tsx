@@ -2,6 +2,8 @@ import * as React from 'react';
 
 type Position = { x: number; y: number };
 
+export type OnDropAction = ({ position }: { position: any }) => void;
+
 function useDragAndDrop({
   disabled = false,
   onDragStart,

@@ -1,3 +1,5 @@
+@import '@helpers/layoutMixins.scss';
+
 .draggable-card {
     &__container {
         position: absolute;
@@ -7,6 +9,9 @@
         border-radius: 8px;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         overflow: hidden;
+        resize: both;
+        min-width: 160px;
+        min-height: 100px;
         user-select: none;
     }
 
@@ -16,11 +21,10 @@
     }
 
     &__header {
+        @include flex-layout(null, center, space-between);
+
         height: 36px;
         padding: 0 10px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
         background: #f3f4f6;
         font-size: 14px;
         cursor: grab;
