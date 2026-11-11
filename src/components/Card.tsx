@@ -1,6 +1,8 @@
 
 import * as React from 'react';
+import './Card.scss';
 import useDragAndDrop from "@helpers/useDragAndDrop";
+
 let zCounter = 1;
 
 function Card({
@@ -27,51 +29,30 @@ function Card({
 
   return (
     <div
+      className="draggable-card__container"
       ref={nodeRef}
       style={{
-        position: "absolute",
         left: `${leftPct}%`,
         top: `${topPct}%`,
         width: w,
         height: h,
-        background: "white",
-        color: "#111",
-        border: "1px solid #e5e7eb",
-        borderRadius: 8,
-        boxShadow: "0 4px 20px rgba(0,0,0,0.08)",
-        overflow: "hidden",
-        userSelect: "none",
         zIndex,
       }}
     >
       <div
+        className="draggable-card__header"
         ref={triggerRef}
-        style={{
-          height: 36,
-          padding: "0 10px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          background: "#f3f4f6",
-          fontSize: 14,
-          cursor: "grab",
-        }}
       >
         <span>{title}</span>
-        <span style={{ fontSize: 12, opacity: 0.7 }}>{isDragging ? "dragging" : "drag"}</span>
+        <span className="draggable-card__drag-indicator">
+          {isDragging ? "dragging" : "drag"}
+        </span>
       </div>
 
       <div style={{ padding: 12, fontSize: 14 }}>
         <button
+          className="draggable-card__reset-button"
           onClick={reset}
-          style={{
-            padding: "6px 10px",
-            border: "1px solid #e5e7eb",
-            borderRadius: 6,
-            background: "white",
-            color: "#111",
-            cursor: "pointer",
-          }}
         >
           Reset
         </button>
