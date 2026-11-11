@@ -10,19 +10,25 @@ function Card({
   x,
   y,
   onRemove,
+  onDragStart,
+  onDragEnd,
 }: {
   title: string;
   x: number;
   y: number;
   onRemove?: () => void;
+  onDragStart?: () => void;
+  onDragEnd?: (event: PointerEvent) => void;
 }) {
   const [zIndex, setZIndex] = React.useState(1);
 
-  const { triggerRef, nodeRef, isDragging, reset } = useDragAndDrop({
+  const { triggerRef, nodeRef } = useDragAndDrop({
     onDragStart: () => {
       zCounter += 1;
       setZIndex(zCounter);
+      onDragStart?.();
     },
+    onDragEnd: (event) => onDragEnd?.(event),
   });
 
   return (
@@ -42,9 +48,6 @@ function Card({
         ref={triggerRef}
       >
         <span>{title}</span>
-        <span className="draggable-card__drag-indicator">
-          {isDragging ? "dragging" : "drag"}
-        </span>
       </div>
 
       <div style={{ padding: 12, fontSize: 14 }}>
@@ -53,7 +56,7 @@ function Card({
             className="draggable-card__reset-button"
             onClick={() => onRemove()}
           >
-            Reset
+            Remove
           </button>
         )}
       </div>

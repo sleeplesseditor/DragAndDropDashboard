@@ -16,7 +16,9 @@ type PlacedCard = {
 
 function App() {
   const canvasRef = React.useRef<HTMLDivElement>(null);
+  const selectionBarRef = React.useRef<HTMLElement>(null);
   const [cards, setCards] = React.useState<PlacedCard[]>([]);
+  const [isCardDragging, setIsCardDragging] = React.useState(false);
 
   const usedTypes = new Set(cards.map((card) => card.type));
 
@@ -59,9 +61,28 @@ function App() {
     setCards((current) => current.filter((card) => card.id !== id));
   }
 
+  function handleCardDragEnd(id: string, event: PointerEvent) {
+    setIsCardDragging(false);
+    if (event.type !== "pointerup") return;
+
+    const selectionBar = selectionBarRef.current;
+    if (!selectionBar) return;
+
+    const bounds = selectionBar.getBoundingClientRect();
+    if (
+      event.clientX >= bounds.left &&
+      event.clientX <= bounds.right &&
+      event.clientY >= bounds.top &&
+      event.clientY <= bounds.bottom
+    ) {
+      removeCard(id);
+    }
+  }
+
   return (
     <div className="app">
       <SelectionBar
+        selectionBarRef={selectionBarRef}
         usedTypes={usedTypes}
         canvasRef={canvasRef}
         onDrop={handlePaletteDrop}
@@ -69,6 +90,10 @@ function App() {
       <main
         className="main-canvas"
         ref={canvasRef}
+        style={{
+          overflow: isCardDragging ? "visible" : "hidden",
+          zIndex: isCardDragging ? 2 : undefined,
+        }}
       >
         {cards.map((card) => (
           <Card
@@ -77,6 +102,8 @@ function App() {
             x={card.x}
             y={card.y}
             onRemove={() => removeCard(card.id)}
+            onDragStart={() => setIsCardDragging(true)}
+            onDragEnd={(event) => handleCardDragEnd(card.id, event)}
           />
         ))}
       </main>

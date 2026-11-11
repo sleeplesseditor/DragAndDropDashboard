@@ -5,6 +5,7 @@ import './SelectionBar.scss'
 export type CardType = "A" | "B" | "C";
 
 type SelectionBarProps = {
+  selectionBarRef: React.RefObject<HTMLElement | null>;
   usedTypes: ReadonlySet<CardType>;
   canvasRef: React.RefObject<HTMLDivElement | null>;
   onDrop: (type: CardType, clientX: number, clientY: number) => void;
@@ -45,10 +46,11 @@ function PaletteCard({
 
 const cardTypes: CardType[] = ["A", "B", "C"];
 
-const SelectionBar = ({ usedTypes, onDrop }: SelectionBarProps) => {
+const SelectionBar = ({ selectionBarRef, usedTypes, onDrop }: SelectionBarProps) => {
   return (
     <aside
         className="selection-bar__container"
+        ref={selectionBarRef}
     >
         <h2>Cards</h2>
         {cardTypes.map((type) => (
