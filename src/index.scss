@@ -1,3 +1,6 @@
+@import "@helpers/variables.scss";
+@import "@helpers/layoutMixins.scss";
+
 :root {
   --text: #6b6375;
   --text-h: #08060d;
@@ -97,15 +100,29 @@ p {
 }
 
 .app {
-    display: flex;
+  &__container {
+    @include flex-layout(column, null, null);
     height: 100vh;
-}
+  }
 
-.main-canvas {
-    flex: 1;
-    min-width: 0;
-    height: 100vh;
-    position: relative;
-    overflow: hidden;
-    background: #0b0f17;
+  &__content {
+    @include flex-layout(row, null, null);
+
+    .main-canvas {
+      flex: 1;
+      min-width: 0;
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+      background: #0b0f17;
+  }
+  }
+
+  &__title {
+    padding: 10px 0px;
+    background: $panel-background;
+    border-bottom: 1px solid black;
+    color: #000000;
+    font-weight: 600;
+  }
 }

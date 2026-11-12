@@ -1,3 +1,4 @@
+@import '@helpers/variables.scss';
 @import '@helpers/layoutMixins.scss';
 
 .draggable-card {
@@ -25,7 +26,7 @@
 
         height: 36px;
         padding: 0 10px;
-        background: #f3f4f6;
+        background: $panel-background;
         font-size: 14px;
         cursor: grab;
     }
