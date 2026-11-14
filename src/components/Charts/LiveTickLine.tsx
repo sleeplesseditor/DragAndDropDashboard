@@ -1,12 +1,31 @@
 import { HighchartsReact } from "highcharts-react-official";
 import Highcharts from "highcharts";
-import { useSelector } from "react-redux";
-import type { RootState } from "@modules/redux/store";
+import { useEffect, useRef, useState } from "react";
+import { useStore } from "react-redux";
+import type { AppStore } from "@modules/redux/store";
+import { TWO_PANE_BUCKET_MS } from "@modules/area-spline/slice";
+import type { HighchartsReactRefObject } from "highcharts-react-official";
+import useHighchartsResize from "@helpers/useHighchartsResize";
 
 const LiveTickLine = () => {
-    const lineData = useSelector((state: RootState) => state.areaSpline.data);
+    const store = useStore<AppStore>();
+    const containerRef = useRef<HTMLDivElement>(null);
+    const chartRef = useRef<HighchartsReactRefObject | null>(null);
+    const resizeChart = useHighchartsResize(containerRef, chartRef);
+    const [lineData, setLineData] = useState(() => store.getState().areaSpline.data);
+
+    useEffect(() => {
+        const intervalId = window.setInterval(() => {
+            setLineData(store.getState().areaSpline.data);
+        }, TWO_PANE_BUCKET_MS);
+
+        return () => window.clearInterval(intervalId);
+    }, [store]);
 
     const chartOptions = {
+        chart: {
+            reflow: true
+        },
         credits: {
             enabled: false
         },
@@ -17,12 +36,30 @@ const LiveTickLine = () => {
             enabled: false
         },
         xAxis: {
+            labels: {
+                format: '{value:%H:%M:%S }'
+            },
+            rotation: -45,
             type: "datetime" as const,
         },
         series: [{
             name: "Live Price Update",
             data: lineData,
-            type: "spline",
+            type: "areaspline",
+            threshold: null,
+            color: '#2caffe',
+                fillColor: {
+                    linearGradient: {
+                        x1: 0,
+                        y1: 0,
+                        x2: 0,
+                        y2: 1
+                    },
+                    stops: [
+                        [0, '#2caffe'],
+                        [1, '#2caffe00']
+                    ]
+                },
         }],
         title: {
             style: {
@@ -43,12 +80,19 @@ const LiveTickLine = () => {
         }
     }
 
-    return lineData.length === 0 ? <span>Loading...</span> : (
-        <HighchartsReact 
-            highcharts={Highcharts}
-            options={chartOptions}
-        />
-    )
+    return (
+        <div ref={containerRef} style={{ width: "100%", height: "100%" }}>
+            {lineData.length === 0 ? <span>Loading...</span> : (
+                <HighchartsReact
+                    ref={chartRef}
+                    highcharts={Highcharts}
+                    options={chartOptions}
+                    callback={resizeChart}
+                    containerProps={{ style: { width: "100%", height: "100%" } }}
+                />
+            )}
+        </div>
+    );
 };
 
 export default LiveTickLine;

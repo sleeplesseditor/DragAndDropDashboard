@@ -4,7 +4,6 @@ export class Connection {
     constructor(private connectionProxy: ConnectionProxy) {}
 
     connect() {
-        console.log('Connecting to WebSocket...');
         this.connectionProxy.start();
     }
 

@@ -16,6 +16,7 @@ const Header = () => {
     return (
         <div className="header">
             <div className="header__dropdown">
+                    <label>Exchange: </label>
                     <select value={activeExchange} onChange={handleExchangeChange}>
                         <option value="US Stocks">US Stocks</option>
                         <option value="Forex">Forex</option>

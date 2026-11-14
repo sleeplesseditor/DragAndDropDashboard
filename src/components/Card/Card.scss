@@ -2,6 +2,16 @@
 @import '@helpers/layoutMixins.scss';
 
 .draggable-card {
+    &__close-btn {
+        color: #6b6b6b;
+        cursor: pointer;
+        transition: all .2s ease-in-out;
+
+        &:hover {
+            color: $basic-black;
+        }
+    }
+
     &__container {
         position: absolute;
         background: white;
@@ -10,6 +20,8 @@
         border-radius: 8px;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         overflow: hidden;
+        display: flex;
+        flex-direction: column;
         resize: both;
         min-width: 160px;
         min-height: 100px;
@@ -22,12 +34,14 @@
     }
 
     &__header {
-        @include flex-layout(null, center, space-between);
+        @include flex-layout(null, space-between, center);
 
+        flex: 0 0 36px;
         height: 36px;
         padding: 0 10px;
         background: $panel-background;
         font-size: 14px;
+        font-weight: $font-weight-mid;
         cursor: grab;
     }
 
@@ -38,5 +52,18 @@
         border-radius: 6px;
         cursor: pointer;
         color: #111;
+    }
+}
+
+.card-content__container {
+    display: flex;
+    flex: 1 1 0;
+    min-width: 0;
+    min-height: 0;
+
+    > div {
+        flex: 1 1 0;
+        min-width: 0;
+        min-height: 0;
     }
 }

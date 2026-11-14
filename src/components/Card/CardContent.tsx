@@ -1,5 +1,6 @@
 import * as React from 'react';
 import LiveTickLine from '@components/Charts/LiveTickLine';
+import TwoPane from '@components/Charts/TwoPane';
 
 interface CardContentProps {
     chartType: string;
@@ -7,14 +8,12 @@ interface CardContentProps {
 }
 
 const CardContent = (props: CardContentProps) => {
-    console.log('PROPS', props)
-
     const contentSelector = (chartType: string) => {
         switch (chartType) {
             case "Live Price Update":
                 return <LiveTickLine />;
-            case "B":
-                return <div>Content for B</div>;
+            case "Synchronised Price and Volume Chart":
+                return <TwoPane />;
             case "C":
                 return <div>Content for C</div>;
             default:

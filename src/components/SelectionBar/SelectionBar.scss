@@ -27,11 +27,13 @@
         color: #111;
         border-radius: 6px;
         border: 1px solid #ccc;
-        font-weight: $font-weight-mid;
+        
 
         &-content {
             @include flex-layout(column, center, center);
             gap: 8px;
+            font-weight: $font-weight-mid;
+            font-size: 16px;
             img {
                 width: 200px;
             }

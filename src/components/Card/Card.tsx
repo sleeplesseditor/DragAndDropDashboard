@@ -49,7 +49,16 @@ function Card({
         className="draggable-card__header"
         ref={triggerRef}
       >
+        <span></span>
         <span>{title}</span>
+        <span 
+          className="draggable-card__close-btn"
+          onClick={onRemove}
+          role="button"
+          title="Remove Chart"
+        >
+            X
+        </span>
       </div>
       <CardContent 
         chartType={title}

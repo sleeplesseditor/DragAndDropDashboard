@@ -18,7 +18,6 @@ export class WsConnectionProxy implements ConnectionProxy {
     }
 
     start(): void {
-        console.log("START")
         this.shouldReconnect = true
         this.connect();
     }

@@ -11,18 +11,6 @@ const connectionProxy = new WsConnectionProxy(
     import.meta.env["VITE_FINNHUB_API_URL"] + import.meta.env["VITE_FINNHUB_API_KEY"]
 )
 
-export const fetchSymbolList = async () => {
-    try {
-        console.log('TRIED')
-        const response = await fetch(`https://finnhub.io/api/v1/stock/symbol?exchange=US&token=${import.meta.env["VITE_FINNHUB_API_KEY"]}`);
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error("Error fetching symbol list:", error);
-        throw error;
-    }
-};
-
 const connection = new Connection(connectionProxy);
 
 function createStore() {
@@ -64,5 +52,6 @@ export const getStore = () => {
 
 export default getStore;
 
+export type AppStore = ReturnType<typeof createStore>;
 export type RootState = ReturnType<ReturnType<typeof createStore>["getState"]>;
 export type AppDispatch = ReturnType<typeof createStore>["dispatch"];

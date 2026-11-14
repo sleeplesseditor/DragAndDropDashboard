@@ -7,6 +7,7 @@ import forexSymbols from "@helpers/forexSymbols.json";
 import usStockSymbols from "@helpers/stockSymbols.json";
 import './SelectionBar.scss';
 import LivePriceUpdate from "@components/SelectionBar/imgs/LivePriceUpdate.png";
+import TwoPane from "@components/SelectionBar/imgs/TwoPane.png";
 
 // import {AutoCompleteSearch} from '@components/AutoCompleteSearch/AutoCompleteSearch';
 import Select, { type SingleValue } from 'react-select';
@@ -16,7 +17,7 @@ type SymbolOption = {
   label: string;
 };
 
-export type CardType = "Live Price Update" | "B" | "C";
+export type CardType = "Live Price Update" | "Synchronised Price and Volume Chart" | "C";
 
 type SelectionBarProps = {
   canvasRef: React.RefObject<HTMLDivElement | null>;
@@ -29,8 +30,8 @@ const previewImageSelection = (type: CardType) => {
   switch (type) {
     case "Live Price Update":
       return LivePriceUpdate;
-    case "B":
-      return ""; // Replace with the path to the image for type B
+    case "Synchronised Price and Volume Chart":
+      return TwoPane; // Replace with the path to the image for type B
     case "C":
       return ""; // Replace with the path to the image for type C
     default:
@@ -65,13 +66,13 @@ type: CardType;
     >
       <div className="selection-bar__palette-card-content" ref={triggerRef}>
         {type}
-        {type === "Live Price Update" && <img src={previewImageSelection(type)} alt="" />}
+        {type !== "C" && <img src={previewImageSelection(type)} alt="" />}
       </div>
     </div>
   );
 }
 
-const cardTypes: CardType[] = ["Live Price Update", "B", "C"];
+const cardTypes: CardType[] = ["Live Price Update", "Synchronised Price and Volume Chart", "C"];
 
 const SelectionBar = ({ selectionBarRef, usedTypes, onDrop }: SelectionBarProps) => {
   const dispatch = useDispatch<AppDispatch>();

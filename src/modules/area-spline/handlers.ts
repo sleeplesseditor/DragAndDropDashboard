@@ -11,7 +11,9 @@ const isLiveTick = (value: unknown): value is LiveTick => {
         typeof value.t === "number" &&
         Number.isFinite(value.t) &&
         typeof value.p === "number" &&
-        Number.isFinite(value.p);
+        Number.isFinite(value.p) &&
+        (!("v" in value) ||
+            (typeof value.v === "number" && Number.isFinite(value.v)));
 };
 
 const handleUpdateAreaSplineData = (

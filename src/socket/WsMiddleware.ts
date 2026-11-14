@@ -16,7 +16,6 @@ export const createWsMiddleware = (connection: Connection): Middleware => {
             }
 
             if (parsedData?.type === "trade" && Array.isArray(parsedData.data)) {
-                console.log('Received data for channel:', parsedData, store)
                 handleUpdateAreaSplineData(parsedData.data, store.dispatch)
             }
         })

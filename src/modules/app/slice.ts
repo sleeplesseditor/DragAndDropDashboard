@@ -9,7 +9,6 @@ export const DEFAULT_TIMEFRAME = "1m";
 
 const waitForConnection = (getState: () => RootState): Promise<void> => {
     return new Promise((resolve) => {
-        console.log('WAITING FOR CONNECTION')
         const checkConnection = () => {
             if(getState().subscriptions.wsConnectionStatus === ConnectionStatus.Connected) {
                 resolve()
