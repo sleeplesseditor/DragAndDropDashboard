@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice, type PayloadAction } from "@reduxjs/tool
 import { ConnectionStatus } from "@socket/types/ConnectionStatus";
 import { SubscriptionActionType } from "@socket/types/ActionTypes";
 import { Connection } from "./Connection";
+import RootState from "@modules/redux/store";
 
 export type requestSubscribeToChannelAck = {
     channel: string
@@ -62,11 +63,54 @@ const createSubscribeThunk = () => createAsyncThunk(
     //     return msg
 });
 
+// export const selectCurrencyPair = createAsyncThunk(
+//     "selection/selectCurrencyPair",
+//     async ({ currencyPair }: { currencyPair: string }, { dispatch, getState, rejectWithValue }) => {
+//         try {
+//             const state = getState() as RootState;
+//             const previousPair = state.selection.currencyPair;
+
+//             if (previousPair && previousPair !== currencyPair) {
+//                 const unsubPromises = Object.entries(state.subscriptions).filter(([chanId]) => {
+//                     const sub = state.subscriptions[Number(chanId)]
+//                     return sub?.channel === Channel.TRADES || sub?.channel === Channel.BOOK
+//                 })
+//                 .map(async ([channelId]) => {
+//                     try {
+//                         return await dispatch(unsubscribeFromTradesAndBook(channelId)).unwrap();
+//                     } catch (error) {
+//                         console.warn(`Failed to unsubscribe from channel ${channelId}:`, error);
+//                         return null;
+//                     }
+//                 })
+//                 // Promise.allSettled waits for all operations to complete regardless of
+//                 // individual failures, ensuring cleanup always happens.
+//                 await Promise.allSettled(unsubPromises);
+//             };
+
+//             dispatch(selectionSlice.actions.setCurrencyPair({ currencyPair }))
+//             return new Promise<void>((resolve) => {
+//                 setTimeout(() => {
+//                     dispatch(tradeSubscribeToSymbol({ symbol: currencyPair }));
+//                     dispatch(bookSubscribeToSymbol({ symbol: currencyPair, prec: "R0" }));
+//                     resolve()
+//                 }, SUBSCRIPTION_TIMEOUT_IN_MS)
+//             })
+//         } catch (error) {
+//             return rejectWithValue(error instanceof Error ? error.message : "Unknown error")
+//         }
+//     }
+// )
+
 export const testCall = createAsyncThunk(
     "subscriptions/testCall",
-    async (_, { extra }) => {
+    async (_, { extra, getState }) => {
+        const state = getState() as typeof RootState;
+
+        console.log("Current state in testCall:", state);
+
         const { connection } = extra as { connection: Connection }
-        const msg = JSON.stringify({'type':'subscribe', 'symbol': 'AAPL'});
+        const msg = JSON.stringify({'type':'subscribe', 'symbol': state?.selection?.symbol});
 
         connection.send(msg)
         return msg

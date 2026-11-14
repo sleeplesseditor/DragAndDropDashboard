@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Header from '@components/Header/Header';
 import Card from "@components/Card/Card";
 import SelectionBar, { type CardType } from '@components/SelectionBar/SelectionBar';
 import './index.scss';
@@ -80,7 +81,7 @@ function App() {
 
   return (
     <div className="app__container">
-        <div className="app__title">FINNHUB DASHBOARD</div>
+        <Header />
         <div className="app__content">
             <SelectionBar
                 canvasRef={canvasRef}

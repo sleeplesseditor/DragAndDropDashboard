@@ -1,12 +1,21 @@
+@import '@helpers/layoutMixins.scss';
 @import '@helpers/variables.scss';
 
 .selection-bar {
     &__container {
+        @include flex-layout(column, null, null);
+        gap: 10px;
         position: relative;
         z-index: 1;
         width: 220px;
         padding: 16px;
-        background: $panel-background;
+        background: $selection-bar-container-background;
+
+        select {
+            font-weight: $font-weight-mid;
+            width: 100%;
+            padding: 5px;
+        }
     }
 
     &__palette-card,
@@ -17,6 +26,16 @@
         background: white;
         color: #111;
         border-radius: 6px;
+        border: 1px solid #ccc;
+        font-weight: $font-weight-mid;
+
+        &-content {
+            @include flex-layout(column, center, center);
+            gap: 8px;
+            img {
+                width: 200px;
+            }
+        }
     }
 
     &__palette-card--disabled {

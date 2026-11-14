@@ -28,6 +28,7 @@ export const bootstrapApp = createAsyncThunk("app/bootstrap",
         await waitForConnection(getState as () => RootState);
         // const currencyPairs = await dispatch(refDataLoad()).unwrap();
         // dispatch(selectCurrencyPair({ currencyPair: currencyPairs[0] }));
+        dispatch({ type: "selection/setStockSymbol", payload: { symbol: "AAPL" } });
 
         // currencyPairs.forEach((currencyPair: string) => {
         //     setTimeout(() => {

@@ -3,17 +3,33 @@ import { Connection } from "@socket/Connection";
 import { ConnectionStatus } from "@socket/types/ConnectionStatus";
 import { WsConnectionProxy } from "@socket/WsConnectionProxy";
 import { changeConnectionStatus, subscriptionSlice } from "@socket/slice";
+import { selectionSlice } from "@modules/selection/slice";
 import { createWsMiddleware } from "@socket/WsMiddleware";
+import { areaSplineSlice } from "@modules/area-spline/slice";
 
 const connectionProxy = new WsConnectionProxy(
     import.meta.env["VITE_FINNHUB_API_URL"] + import.meta.env["VITE_FINNHUB_API_KEY"]
 )
+
+export const fetchSymbolList = async () => {
+    try {
+        console.log('TRIED')
+        const response = await fetch(`https://finnhub.io/api/v1/stock/symbol?exchange=US&token=${import.meta.env["VITE_FINNHUB_API_KEY"]}`);
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Error fetching symbol list:", error);
+        throw error;
+    }
+};
 
 const connection = new Connection(connectionProxy);
 
 function createStore() {
     const store = configureStore({
         reducer: {
+            areaSpline: areaSplineSlice.reducer,
+            selection: selectionSlice.reducer,
             subscriptions: subscriptionSlice.reducer
         },
         middleware: (getDefaultMiddleware) => 

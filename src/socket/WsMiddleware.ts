@@ -1,23 +1,23 @@
-import type { Middleware } from "@reduxjs/toolkit"
+import type { Middleware } from "@reduxjs/toolkit";
 import { Connection } from "@socket/Connection";
+import {handleUpdateAreaSplineData} from "@modules/area-spline/handlers";
 
 export const createWsMiddleware = (connection: Connection): Middleware => {
     return (store) => {
         connection.onReceive((data) => {
             const parsedData = JSON.parse(data)
+
+            console.log('Received data from WebSocket:', parsedData, store)
             
             if(parsedData === "subscribed") {
                 console.log('Subscription acknowledged', parsedData, store)
                 // handleSubscriptionAcknowledge(parsedData, store);
+                return;
             }
 
-            if (Array.isArray(parsedData)) {
-                const [channelId] = parsedData
-                const subscriptions = store.getState().subscriptions
-                const subscription = store.getState().subscriptions[channelId]
-                console.log(subscriptions)
-                console.log("/***********************/")
-                console.log(subscription)
+            if (parsedData?.type === "trade" && Array.isArray(parsedData.data)) {
+                console.log('Received data for channel:', parsedData, store)
+                handleUpdateAreaSplineData(parsedData.data, store.dispatch)
             }
         })
 

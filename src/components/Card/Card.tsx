@@ -1,10 +1,8 @@
 
 import * as React from 'react';
+import CardContent from './CardContent';
 import './Card.scss';
 import useDragAndDrop from "@helpers/useDragAndDrop";
-import { useDispatch } from 'react-redux';
-import { testCall } from '@socket/slice';
-import type { AppDispatch } from '@modules/redux/store';
 
 let zCounter = 1;
 
@@ -24,7 +22,7 @@ function Card({
   y: number;
 }) {
   const [zIndex, setZIndex] = React.useState(1);
-  const dispatch = useDispatch<AppDispatch>();
+  // const dispatch = useDispatch<AppDispatch>();
 
   const { triggerRef, nodeRef } = useDragAndDrop({
     onDragStart: () => {
@@ -40,7 +38,7 @@ function Card({
       className="draggable-card__container"
       ref={nodeRef}
       style={{
-       left: x,
+        left: x,
         top: y,
         width: 200,
         height: 130,
@@ -53,19 +51,9 @@ function Card({
       >
         <span>{title}</span>
       </div>
-
-      <div style={{ padding: 12, fontSize: 14 }}>
-        {onRemove && (
-          <button
-            className="draggable-card__reset-button"
-            onClick={() => {
-              dispatch(testCall())
-            }}
-          >
-            Test WebSocket
-          </button>
-        )}
-      </div>
+      <CardContent 
+        chartType={title}
+      />
     </div>
   );
 }

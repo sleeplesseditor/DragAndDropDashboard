@@ -1,0 +1,374 @@
+[
+  {
+    "value": "OANDA:EUR_SEK",
+    "label": "OANDA:EUR_SEK"
+  },
+  {
+    "value": "OANDA:NZD_CAD",
+    "label": "OANDA:NZD_CAD"
+  },
+  {
+    "value": "OANDA:XAU_NZD",
+    "label": "OANDA:XAU_NZD"
+  },
+  {
+    "value": "OANDA:XAU_HKD",
+    "label": "OANDA:XAU_HKD"
+  },
+  {
+    "value": "OANDA:USD_HKD",
+    "label": "OANDA:USD_HKD"
+  },
+  {
+    "value": "OANDA:CAD_HKD",
+    "label": "OANDA:CAD_HKD"
+  },
+  {
+    "value": "OANDA:AUD_USD",
+    "label": "OANDA:AUD_USD"
+  },
+  {
+    "value": "OANDA:USD_MXN",
+    "label": "OANDA:USD_MXN"
+  },
+  {
+    "value": "OANDA:NZD_JPY",
+    "label": "OANDA:NZD_JPY"
+  },
+  {
+    "value": "OANDA:NZD_SGD",
+    "label": "OANDA:NZD_SGD"
+  },
+  {
+    "value": "OANDA:XAU_EUR",
+    "label": "OANDA:XAU_EUR"
+  },
+  {
+    "value": "OANDA:XAG_EUR",
+    "label": "OANDA:XAG_EUR"
+  },
+  {
+    "value": "OANDA:USD_NOK",
+    "label": "OANDA:USD_NOK"
+  },
+  {
+    "value": "OANDA:EUR_ZAR",
+    "label": "OANDA:EUR_ZAR"
+  },
+  {
+    "value": "OANDA:GBP_JPY",
+    "label": "OANDA:GBP_JPY"
+  },
+  {
+    "value": "OANDA:GBP_USD",
+    "label": "OANDA:GBP_USD"
+  },
+  {
+    "value": "OANDA:GBP_SGD",
+    "label": "OANDA:GBP_SGD"
+  },
+  {
+    "value": "OANDA:XPD_USD",
+    "label": "OANDA:XPD_USD"
+  },
+  {
+    "value": "OANDA:AUD_CHF",
+    "label": "OANDA:AUD_CHF"
+  },
+  {
+    "value": "OANDA:AUD_HKD",
+    "label": "OANDA:AUD_HKD"
+  },
+  {
+    "value": "OANDA:CHF_HKD",
+    "label": "OANDA:CHF_HKD"
+  },
+  {
+    "value": "OANDA:EUR_HUF",
+    "label": "OANDA:EUR_HUF"
+  },
+  {
+    "value": "OANDA:AUD_SGD",
+    "label": "OANDA:AUD_SGD"
+  },
+  {
+    "value": "OANDA:EUR_CZK",
+    "label": "OANDA:EUR_CZK"
+  },
+  {
+    "value": "OANDA:USD_SEK",
+    "label": "OANDA:USD_SEK"
+  },
+  {
+    "value": "OANDA:XAU_CHF",
+    "label": "OANDA:XAU_CHF"
+  },
+  {
+    "value": "OANDA:XAU_AUD",
+    "label": "OANDA:XAU_AUD"
+  },
+  {
+    "value": "OANDA:USD_THB",
+    "label": "OANDA:USD_THB"
+  },
+  {
+    "value": "OANDA:CHF_JPY",
+    "label": "OANDA:CHF_JPY"
+  },
+  {
+    "value": "OANDA:EUR_GBP",
+    "label": "OANDA:EUR_GBP"
+  },
+  {
+    "value": "OANDA:CAD_CHF",
+    "label": "OANDA:CAD_CHF"
+  },
+  {
+    "value": "OANDA:USD_HUF",
+    "label": "OANDA:USD_HUF"
+  },
+  {
+    "value": "OANDA:CAD_JPY",
+    "label": "OANDA:CAD_JPY"
+  },
+  {
+    "value": "OANDA:EUR_NOK",
+    "label": "OANDA:EUR_NOK"
+  },
+  {
+    "value": "OANDA:USD_JPY",
+    "label": "OANDA:USD_JPY"
+  },
+  {
+    "value": "OANDA:CAD_SGD",
+    "label": "OANDA:CAD_SGD"
+  },
+  {
+    "value": "OANDA:NZD_HKD",
+    "label": "OANDA:NZD_HKD"
+  },
+  {
+    "value": "OANDA:XAG_USD",
+    "label": "OANDA:XAG_USD"
+  },
+  {
+    "value": "OANDA:CHF_ZAR",
+    "label": "OANDA:CHF_ZAR"
+  },
+  {
+    "value": "OANDA:USD_CZK",
+    "label": "OANDA:USD_CZK"
+  },
+  {
+    "value": "OANDA:EUR_USD",
+    "label": "OANDA:EUR_USD"
+  },
+  {
+    "value": "OANDA:USD_PLN",
+    "label": "OANDA:USD_PLN"
+  },
+  {
+    "value": "OANDA:ZAR_JPY",
+    "label": "OANDA:ZAR_JPY"
+  },
+  {
+    "value": "OANDA:EUR_SGD",
+    "label": "OANDA:EUR_SGD"
+  },
+  {
+    "value": "OANDA:USD_CAD",
+    "label": "OANDA:USD_CAD"
+  },
+  {
+    "value": "OANDA:TRY_JPY",
+    "label": "OANDA:TRY_JPY"
+  },
+  {
+    "value": "OANDA:AUD_NZD",
+    "label": "OANDA:AUD_NZD"
+  },
+  {
+    "value": "OANDA:GBP_AUD",
+    "label": "OANDA:GBP_AUD"
+  },
+  {
+    "value": "OANDA:XAU_CAD",
+    "label": "OANDA:XAU_CAD"
+  },
+  {
+    "value": "OANDA:EUR_HKD",
+    "label": "OANDA:EUR_HKD"
+  },
+  {
+    "value": "OANDA:XAG_NZD",
+    "label": "OANDA:XAG_NZD"
+  },
+  {
+    "value": "OANDA:AUD_JPY",
+    "label": "OANDA:AUD_JPY"
+  },
+  {
+    "value": "OANDA:USD_DKK",
+    "label": "OANDA:USD_DKK"
+  },
+  {
+    "value": "OANDA:XAG_SGD",
+    "label": "OANDA:XAG_SGD"
+  },
+  {
+    "value": "OANDA:XAU_JPY",
+    "label": "OANDA:XAU_JPY"
+  },
+  {
+    "value": "OANDA:XCU_USD",
+    "label": "OANDA:XCU_USD"
+  },
+  {
+    "value": "OANDA:EUR_NZD",
+    "label": "OANDA:EUR_NZD"
+  },
+  {
+    "value": "OANDA:USD_SGD",
+    "label": "OANDA:USD_SGD"
+  },
+  {
+    "value": "OANDA:XAG_GBP",
+    "label": "OANDA:XAG_GBP"
+  },
+  {
+    "value": "OANDA:EUR_CHF",
+    "label": "OANDA:EUR_CHF"
+  },
+  {
+    "value": "OANDA:HKD_JPY",
+    "label": "OANDA:HKD_JPY"
+  },
+  {
+    "value": "OANDA:XAU_XAG",
+    "label": "OANDA:XAU_XAG"
+  },
+  {
+    "value": "OANDA:USD_ZAR",
+    "label": "OANDA:USD_ZAR"
+  },
+  {
+    "value": "OANDA:XAG_CHF",
+    "label": "OANDA:XAG_CHF"
+  },
+  {
+    "value": "OANDA:USD_CNH",
+    "label": "OANDA:USD_CNH"
+  },
+  {
+    "value": "OANDA:USD_TRY",
+    "label": "OANDA:USD_TRY"
+  },
+  {
+    "value": "OANDA:GBP_CHF",
+    "label": "OANDA:GBP_CHF"
+  },
+  {
+    "value": "OANDA:SGD_JPY",
+    "label": "OANDA:SGD_JPY"
+  },
+  {
+    "value": "OANDA:EUR_PLN",
+    "label": "OANDA:EUR_PLN"
+  },
+  {
+    "value": "OANDA:NZD_CHF",
+    "label": "OANDA:NZD_CHF"
+  },
+  {
+    "value": "OANDA:XAG_HKD",
+    "label": "OANDA:XAG_HKD"
+  },
+  {
+    "value": "OANDA:AUD_CAD",
+    "label": "OANDA:AUD_CAD"
+  },
+  {
+    "value": "OANDA:XAG_CAD",
+    "label": "OANDA:XAG_CAD"
+  },
+  {
+    "value": "OANDA:XAU_SGD",
+    "label": "OANDA:XAU_SGD"
+  },
+  {
+    "value": "OANDA:XAG_JPY",
+    "label": "OANDA:XAG_JPY"
+  },
+  {
+    "value": "OANDA:XPT_USD",
+    "label": "OANDA:XPT_USD"
+  },
+  {
+    "value": "OANDA:GBP_NZD",
+    "label": "OANDA:GBP_NZD"
+  },
+  {
+    "value": "OANDA:XAG_AUD",
+    "label": "OANDA:XAG_AUD"
+  },
+  {
+    "value": "OANDA:EUR_TRY",
+    "label": "OANDA:EUR_TRY"
+  },
+  {
+    "value": "OANDA:EUR_CAD",
+    "label": "OANDA:EUR_CAD"
+  },
+  {
+    "value": "OANDA:GBP_PLN",
+    "label": "OANDA:GBP_PLN"
+  },
+  {
+    "value": "OANDA:EUR_DKK",
+    "label": "OANDA:EUR_DKK"
+  },
+  {
+    "value": "OANDA:EUR_AUD",
+    "label": "OANDA:EUR_AUD"
+  },
+  {
+    "value": "OANDA:NZD_USD",
+    "label": "OANDA:NZD_USD"
+  },
+  {
+    "value": "OANDA:GBP_HKD",
+    "label": "OANDA:GBP_HKD"
+  },
+  {
+    "value": "OANDA:BCO_USD",
+    "label": "OANDA:BCO_USD"
+  },
+  {
+    "value": "OANDA:USD_CHF",
+    "label": "OANDA:USD_CHF"
+  },
+  {
+    "value": "OANDA:SGD_CHF",
+    "label": "OANDA:SGD_CHF"
+  },
+  {
+    "value": "OANDA:XAU_GBP",
+    "label": "OANDA:XAU_GBP"
+  },
+  {
+    "value": "OANDA:XAU_USD",
+    "label": "OANDA:XAU_USD"
+  },
+  {
+    "value": "OANDA:GBP_CAD",
+    "label": "OANDA:GBP_CAD"
+  },
+  {
+    "value": "OANDA:EUR_JPY",
+    "label": "OANDA:EUR_JPY"
+  },
+  {
+    "value": "OANDA:GBP_ZAR",
+    "label": "OANDA:GBP_ZAR"
+  }
+]
