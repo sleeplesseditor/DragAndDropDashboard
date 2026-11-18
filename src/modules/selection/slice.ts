@@ -51,10 +51,10 @@ export const selectStockSymbol = createAsyncThunk(
         }
 
         // Used for testing – change back to symbol when done
-        dispatch(selectionSlice.actions.setStockSymbol({ symbol: "BINANCE:BTCUSDT" }));
+        dispatch(selectionSlice.actions.setStockSymbol({ symbol }));
         connection.send(JSON.stringify({
             type: "subscribe",
-            symbol: "BINANCE:BTCUSDT",
+            symbol,
         }));
     }
 )
