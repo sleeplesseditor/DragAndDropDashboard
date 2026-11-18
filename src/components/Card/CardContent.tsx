@@ -1,6 +1,7 @@
 import * as React from 'react';
 import LiveTickLine from '@components/Charts/LiveTickLine';
 import TwoPane from '@components/Charts/TwoPane';
+import BulletChart from '@components/Charts/BulletChart';
 
 interface CardContentProps {
     chartType: string;
@@ -14,8 +15,8 @@ const CardContent = (props: CardContentProps) => {
                 return <LiveTickLine />;
             case "Synchronised Price and Volume Chart":
                 return <TwoPane />;
-            case "C":
-                return <div>Content for C</div>;
+            case "Live Price Gauge":
+                return <BulletChart />;
             default:
                 return <div>Default Content</div>;
         }

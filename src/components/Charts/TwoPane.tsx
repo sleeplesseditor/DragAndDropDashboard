@@ -13,16 +13,23 @@ const TwoPane = () => {
     const chartRef = useRef<HighchartsReactRefObject | null>(null);
     const resizeChart = useHighchartsResize(containerRef, chartRef);
     const [chartData, setChartData] = useState(() => {
-        return store.getState().areaSpline.twoPaneData;
+        return store.getState().liveData.twoPaneData;
     });
 
     useEffect(() => {
         const intervalId = window.setInterval(() => {
-            setChartData(store.getState().areaSpline.twoPaneData);
+            setChartData(store.getState().liveData.twoPaneData);
         }, TWO_PANE_BUCKET_MS);
 
         return () => window.clearInterval(intervalId);
     }, [store]);
+
+    const priceSeriesData = chartData.priceData.map(
+        ([timestamp, price]): [number, number] => [timestamp, price]
+    );
+    const volumeSeriesData = chartData.volumeData.map(
+        ([timestamp, volume]): [number, number] => [timestamp, volume]
+    );
 
     const chartOptions = {
         chart: {
@@ -81,7 +88,7 @@ const TwoPane = () => {
                 name: "Price",
                 type: "spline",
                 yAxis: 0,
-                data: chartData.priceData,
+                data: priceSeriesData,
                 tooltip: {
                     valueDecimals: 2
                 }
@@ -90,7 +97,7 @@ const TwoPane = () => {
                 name: "Volume",
                 type: "column",
                 yAxis: 1,
-                data: chartData.volumeData,
+                data: volumeSeriesData,
                 color: "#90EE90",
                 tooltip: {
                     valueDecimals: 4

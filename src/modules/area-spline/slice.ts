@@ -29,7 +29,7 @@ export const TWO_PANE_BUCKET_MS = 5000;
 const MAX_TWO_PANE_POINTS = 120;
 
 export const areaSplineSlice = createSlice({
-    name: "areaSpline",
+    name: "liveData",
     initialState,
     reducers: {
         areaSplineUpdateReducer: (state, action: PayloadAction<LiveTick[]>) => {

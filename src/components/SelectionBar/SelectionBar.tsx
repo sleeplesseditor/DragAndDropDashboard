@@ -17,7 +17,7 @@ type SymbolOption = {
   label: string;
 };
 
-export type CardType = "Live Price Update" | "Synchronised Price and Volume Chart" | "C";
+export type CardType = "Live Price Update" | "Synchronised Price and Volume Chart" | "Live Price Gauge";
 
 type SelectionBarProps = {
   canvasRef: React.RefObject<HTMLDivElement | null>;
@@ -32,7 +32,7 @@ const previewImageSelection = (type: CardType) => {
       return LivePriceUpdate;
     case "Synchronised Price and Volume Chart":
       return TwoPane; // Replace with the path to the image for type B
-    case "C":
+    case "Live Price Gauge":
       return ""; // Replace with the path to the image for type C
     default:
       return ""; // Default image or empty string if no image is available
@@ -66,13 +66,13 @@ type: CardType;
     >
       <div className="selection-bar__palette-card-content" ref={triggerRef}>
         {type}
-        {type !== "C" && <img src={previewImageSelection(type)} alt="" />}
+        {type !== "Live Price Gauge" && <img src={previewImageSelection(type)} alt="" />}
       </div>
     </div>
   );
 }
 
-const cardTypes: CardType[] = ["Live Price Update", "Synchronised Price and Volume Chart", "C"];
+const cardTypes: CardType[] = ["Live Price Update", "Synchronised Price and Volume Chart", "Live Price Gauge"];
 
 const SelectionBar = ({ selectionBarRef, usedTypes, onDrop }: SelectionBarProps) => {
   const dispatch = useDispatch<AppDispatch>();

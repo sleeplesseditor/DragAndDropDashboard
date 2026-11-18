@@ -16,7 +16,7 @@ const connection = new Connection(connectionProxy);
 function createStore() {
     const store = configureStore({
         reducer: {
-            areaSpline: areaSplineSlice.reducer,
+            liveData: areaSplineSlice.reducer,
             selection: selectionSlice.reducer,
             subscriptions: subscriptionSlice.reducer
         },

@@ -12,11 +12,11 @@ const LiveTickLine = () => {
     const containerRef = useRef<HTMLDivElement>(null);
     const chartRef = useRef<HighchartsReactRefObject | null>(null);
     const resizeChart = useHighchartsResize(containerRef, chartRef);
-    const [lineData, setLineData] = useState(() => store.getState().areaSpline.data);
+    const [lineData, setLineData] = useState(() => store.getState().liveData.data);
 
     useEffect(() => {
         const intervalId = window.setInterval(() => {
-            setLineData(store.getState().areaSpline.data);
+            setLineData(store.getState().liveData.data);
         }, TWO_PANE_BUCKET_MS);
 
         return () => window.clearInterval(intervalId);

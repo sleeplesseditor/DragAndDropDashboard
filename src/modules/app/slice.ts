@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { Connection } from '@socket/Connection';
 import { ConnectionStatus } from '@socket/types/ConnectionStatus';
 import type { RootState } from '@modules/redux/store';
+import { fetchQuote, type Exchange } from '@modules/selection/slice';
 
 const CHECK_CONNECTION_TIMEOUT_IN_MS = 100;
 export const SUBSCRIPTION_TIMEOUT_IN_MS = 2000
@@ -25,9 +26,16 @@ export const bootstrapApp = createAsyncThunk("app/bootstrap",
         const { connection } = extra as { connection: Connection}
         connection.connect();
         await waitForConnection(getState as () => RootState);
-        // const currencyPairs = await dispatch(refDataLoad()).unwrap();
-        // dispatch(selectCurrencyPair({ currencyPair: currencyPairs[0] }));
-        dispatch({ type: "selection/setStockSymbol", payload: { symbol: "AAPL" } });
+        const symbol = (getState() as RootState).selection.symbol;
+        dispatch(fetchQuote({ symbol }));
+
+        connection.send(JSON.stringify({
+            type: "subscribe",
+            symbol,
+        }));
+
+
+        
 
         // currencyPairs.forEach((currencyPair: string) => {
         //     setTimeout(() => {
