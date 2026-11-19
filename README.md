@@ -3,6 +3,7 @@
 #### Table of Contents
 - [Description](#description)
 - [Local Setup Instructions](#local-setup-instructions)
+- [Planned Improvement Work](#planned-improvement-work)
 
 ## Description
 An experiment in creating a drag and drop dashboard displaying stock market data, using the [Finnhub Stock API](https://finnhub.io/).
@@ -14,3 +15,7 @@ The initial version of the useDragAndDrop Hook originates from [Edoardo Lunardi'
 2. CD into the project folder
 3. Run `npm install`
 4. Run `npm run dev`
+
+## Planned Improvement Work
+- Additional charts and exchange options to be added
+- Options for saving layout of dashboard
