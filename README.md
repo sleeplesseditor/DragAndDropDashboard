@@ -10,6 +10,8 @@ An experiment in creating a drag and drop dashboard displaying stock market data
 
 The initial version of the useDragAndDrop Hook originates from [Edoardo Lunardi's work](https://www.edoardolunardi.dev/) with the [Pointer Events API](https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events).
 
+The app is live on GitHub Pages and can be viewed [here](https://sleeplesseditor.github.io/DragAndDropDashboard/).
+
 ## Local Setup Instructions
 1. Ensure you have an active Finnhub API Key, and add it to a local .env file.
 2. CD into the project folder
