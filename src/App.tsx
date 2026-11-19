@@ -1,11 +1,11 @@
 import * as React from 'react';
 import Header from '@components/Header/Header';
-import Card from "@components/Card/Card";
+import Card, { getCardDimensions } from "@components/Card/Card";
 import SelectionBar, { type CardType } from '@components/SelectionBar/SelectionBar';
+import { useSelector } from 'react-redux';
+import type { RootState } from "@modules/redux/store";
+import { isMarketOpen } from '@helpers/marketHelpers';
 import './index.scss';
-
-const CARD_WIDTH = 200;
-const CARD_HEIGHT = 130;
 
 type PlacedCard = {
   id: string;
@@ -19,6 +19,9 @@ function App() {
   const selectionBarRef = React.useRef<HTMLElement>(null);
   const [cards, setCards] = React.useState<PlacedCard[]>([]);
   const [isCardDragging, setIsCardDragging] = React.useState(false);
+
+  const activeExchange = useSelector((state: RootState) => state.selection.exchange);
+  const [now, setNow] = React.useState(() => new Date());
 
   const usedTypes = new Set(cards.map((card) => card.type));
 
@@ -38,13 +41,14 @@ function App() {
         return;
       }
 
+      const { width, height } = getCardDimensions(type);
       const x = Math.min(
-        Math.max(0, clientX - bounds.left - CARD_WIDTH / 2),
-        Math.max(0, bounds.width - CARD_WIDTH)
+        Math.max(0, clientX - bounds.left - width / 2),
+        Math.max(0, bounds.width - width)
       );
       const y = Math.min(
-        Math.max(0, clientY - bounds.top - CARD_HEIGHT / 2),
-        Math.max(0, bounds.height - CARD_HEIGHT)
+        Math.max(0, clientY - bounds.top - height / 2),
+        Math.max(0, bounds.height - height)
       );
 
       const id = crypto.randomUUID();
@@ -79,6 +83,13 @@ function App() {
     }
   }
 
+  React.useEffect(() => {
+    const timer = window.setInterval(() => setNow(new Date()), 60_000);
+    return () => window.clearInterval(timer);
+  }, []);
+
+const marketOpen = isMarketOpen(activeExchange, now);
+
   return (
     <div className="app__container">
         <Header />
@@ -89,6 +100,12 @@ function App() {
                 selectionBarRef={selectionBarRef}
                 usedTypes={usedTypes}
             />
+            {marketOpen === false && (
+              <div className="market-closed-overlay" role="status">
+                <strong>{activeExchange} market is closed</strong>
+                <span>Live data updates are unavailable outside trading hours.</span>
+              </div>
+            )}
             <main
                 className="main-canvas"
                 ref={canvasRef}

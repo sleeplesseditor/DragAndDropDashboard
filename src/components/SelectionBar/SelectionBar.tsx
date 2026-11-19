@@ -10,6 +10,7 @@ import LivePriceUpdate from "@components/SelectionBar/imgs/LivePriceUpdate.png";
 import TwoPane from "@components/SelectionBar/imgs/TwoPane.png";
 import BulletChartImg from "@components/SelectionBar/imgs/BulletChart.png";
 import Select, { type SingleValue } from 'react-select';
+import { fetchQuote } from '@modules/selection/slice';
 
 type SymbolOption = {
   value: string;
@@ -21,7 +22,7 @@ export type CardType = "Live Price Update" | "Synchronised Price and Volume Char
 type SelectionBarProps = {
   canvasRef: React.RefObject<HTMLDivElement | null>;
   onDrop: (type: CardType, clientX: number, clientY: number) => void;
-selectionBarRef: React.RefObject<HTMLElement | null>;
+  selectionBarRef: React.RefObject<HTMLElement | null>;
   usedTypes: ReadonlySet<CardType>;
 };
 
@@ -47,7 +48,7 @@ type,
   onDrop: SelectionBarProps["onDrop"];
 type: CardType;
 }) {
-  const { triggerRef, nodeRef, isDragging, reset } = useDragAndDrop({
+  const { triggerRef, nodeRef, reset } = useDragAndDrop({
     disabled,
     onDragEnd: (event) => {
       // The hook also calls onDragEnd for pointercancel; don't place on a cancelled drag.
@@ -82,10 +83,12 @@ const SelectionBar = ({ selectionBarRef, usedTypes, onDrop }: SelectionBarProps)
   const handleStockSymbolChange = (option: SingleValue<SymbolOption>) => {
     if (option) {
       dispatch(selectStockSymbol({ symbol: option.value }));
+      dispatch(fetchQuote({ symbol: option.value }));
     }
   };
 
   const exchangeOptionsArr = React.useMemo(() => activeExchange === "US Stocks" ? usStockSymbols : forexSymbols, [activeExchange]);
+  const disabledPaletteCard = (type: CardType) => usedTypes.has(type) || activeExchange === "Forex" && type === "Live Price Gauge";
 
   return (
     <aside
@@ -93,17 +96,6 @@ const SelectionBar = ({ selectionBarRef, usedTypes, onDrop }: SelectionBarProps)
         ref={selectionBarRef}
     >
       <div>
-        {/* <select onChange={handleStockSymbolChange}>
-          {exchangeOptionsArr.map((symbol) => (
-            <option key={symbol} value={symbol}>
-              {symbol}
-            </option>
-          ))}
-        </select> */}
-        {/* <AutoCompleteSearch 
-          onChange={handleStockSymbolChange}
-          options={exchangeOptionsArr}
-        /> */}
         <Select
           options={exchangeOptionsArr}
           value={exchangeOptionsArr.find(({ value }) => value === activeSymbol) ?? null}
@@ -112,7 +104,7 @@ const SelectionBar = ({ selectionBarRef, usedTypes, onDrop }: SelectionBarProps)
       </div>
       {cardTypes.map((type) => (
         <PaletteCard        
-          disabled={usedTypes.has(type)}
+          disabled={disabledPaletteCard(type)}
           key={type}
           onDrop={onDrop}
           type={type}

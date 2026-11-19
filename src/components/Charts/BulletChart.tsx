@@ -50,7 +50,6 @@ const BulletChart = () => {
 
     const chartOptions = {
         chart: {
-            // height: 100,
             inverted: true,
             type: "bullet" as const,
             reflow: true
@@ -87,7 +86,7 @@ const BulletChart = () => {
         },
         yAxis: [{
             labels: {
-                formatter: function() {
+                formatter: function(this: Highcharts.AxisLabelsFormatterContextObject) {
                     return `<b>${this.value}</b>`
                 }
             },
@@ -143,7 +142,7 @@ const BulletChart = () => {
         },
         yAxis: [{
             labels: {
-                formatter: function() {
+                formatter: function(this: Highcharts.AxisLabelsFormatterContextObject) {
                     return `<b>${this.value}</b>`
                 }
             },
@@ -199,7 +198,7 @@ const BulletChart = () => {
         },
         yAxis: [{
             labels: {
-                formatter: function() {
+                formatter: function(this: Highcharts.AxisLabelsFormatterContextObject) {
                     return `<b>${this.value}</b>`
                 }
             },

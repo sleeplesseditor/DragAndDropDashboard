@@ -107,14 +107,27 @@ p {
 
   &__content {
     @include flex-layout(row, null, null);
+    position: relative;
 
     .main-canvas {
       flex: 1;
       min-width: 0;
-      height: 100vh;
+      height: 94vh;
       position: relative;
       overflow: hidden;
       background: #0b0f17;
+    }
+
+    .market-closed-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      display: grid;
+      place-content: center;
+      gap: 8px;
+      color: white;
+      background: rgba(11, 15, 23, 0.72);
+      pointer-events: none;
     }
   }
 }

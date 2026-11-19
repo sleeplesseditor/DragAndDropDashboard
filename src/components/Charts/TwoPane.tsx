@@ -2,13 +2,13 @@ import { HighchartsReact } from "highcharts-react-official";
 import Highcharts from "highcharts";
 import { useEffect, useRef, useState } from "react";
 import { useStore } from "react-redux";
-import type { AppStore } from "@modules/redux/store";
-import { TWO_PANE_BUCKET_MS } from "@modules/area-spline/slice";
+import type { RootState } from "@modules/redux/store";
+import { TWO_PANE_BUCKET_MS } from "@modules/liveData/slice";
 import type { HighchartsReactRefObject } from "highcharts-react-official";
 import useHighchartsResize from "@helpers/useHighchartsResize";
 
 const TwoPane = () => {
-    const store = useStore<AppStore>();
+    const store = useStore<RootState>();
     const containerRef = useRef<HTMLDivElement>(null);
     const chartRef = useRef<HighchartsReactRefObject | null>(null);
     const resizeChart = useHighchartsResize(containerRef, chartRef);

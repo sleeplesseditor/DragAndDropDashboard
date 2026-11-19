@@ -5,10 +5,10 @@ import { WsConnectionProxy } from "@socket/WsConnectionProxy";
 import { changeConnectionStatus, subscriptionSlice } from "@socket/slice";
 import { selectionSlice } from "@modules/selection/slice";
 import { createWsMiddleware } from "@socket/WsMiddleware";
-import { areaSplineSlice } from "@modules/area-spline/slice";
+import { liveDataSlice } from "@modules/liveData/slice";
 
 const connectionProxy = new WsConnectionProxy(
-    import.meta.env["VITE_FINNHUB_API_URL"] + import.meta.env["VITE_FINNHUB_API_KEY"]
+    "wss://ws.finnhub.io?token=" + import.meta.env["VITE_FINNHUB_API_KEY"]
 )
 
 const connection = new Connection(connectionProxy);
@@ -16,7 +16,7 @@ const connection = new Connection(connectionProxy);
 function createStore() {
     const store = configureStore({
         reducer: {
-            liveData: areaSplineSlice.reducer,
+            liveData: liveDataSlice.reducer,
             selection: selectionSlice.reducer,
             subscriptions: subscriptionSlice.reducer
         },
@@ -52,6 +52,5 @@ export const getStore = () => {
 
 export default getStore;
 
-export type AppStore = ReturnType<typeof createStore>;
 export type RootState = ReturnType<ReturnType<typeof createStore>["getState"]>;
 export type AppDispatch = ReturnType<typeof createStore>["dispatch"];

@@ -4,6 +4,17 @@ import CardContent from './CardContent';
 import './Card.scss';
 import useDragAndDrop from "@helpers/useDragAndDrop";
 
+const CARD_WIDTH = 400;
+const CARD_HEIGHT = 320;
+const GAUGE_CARD_WIDTH = 560;
+
+export function getCardDimensions(title: string) {
+  return {
+    width: title === "Live Price Gauge" ? GAUGE_CARD_WIDTH : CARD_WIDTH,
+    height: CARD_HEIGHT,
+  };
+}
+
 let zCounter = 1;
 
 function Card({
@@ -22,7 +33,7 @@ function Card({
   y: number;
 }) {
   const [zIndex, setZIndex] = React.useState(1);
-  // const dispatch = useDispatch<AppDispatch>();
+  const { width, height } = getCardDimensions(title);
 
   const { triggerRef, nodeRef } = useDragAndDrop({
     onDragStart: () => {
@@ -40,8 +51,8 @@ function Card({
       style={{
         left: x,
         top: y,
-        width: 200,
-        height: 130,
+        width,
+        height,
         zIndex,
       }}
     >
@@ -50,7 +61,7 @@ function Card({
         ref={triggerRef}
       >
         <span></span>
-        <span>{title}</span>
+        <span className="draggable-card__title">{title}</span>
         <span 
           className="draggable-card__close-btn"
           onClick={onRemove}

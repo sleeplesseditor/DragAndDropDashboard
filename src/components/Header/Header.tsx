@@ -22,7 +22,7 @@ const Header = () => {
                         <option value="Forex">Forex</option>
                     </select>
                 </div>
-                <span className="header__title">FINNHUB DASHBOARD</span>
+                <span className="header__title">Finnhub Stock API Dashboard</span>
             <span></span>
         </div>
     )

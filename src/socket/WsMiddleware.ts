@@ -1,6 +1,6 @@
 import type { Middleware } from "@reduxjs/toolkit";
 import { Connection } from "@socket/Connection";
-import { handleUpdateAreaSplineData } from "@modules/area-spline/handlers";
+import { handleUpdateAreaSplineData } from "@modules/liveData/handlers";
 import { selectionSlice } from "@modules/selection/slice";
 
 type FinnhubTrade = {
@@ -25,17 +25,16 @@ export const createWsMiddleware = (connection: Connection): Middleware => {
 
             if(parsedData === "subscribed") {
                 console.log('Subscription acknowledged', parsedData, store)
-                // handleSubscriptionAcknowledge(parsedData, store);
                 return;
             }
 
             if (parsedData?.type === "trade" && Array.isArray(parsedData.data)) {
                 handleUpdateAreaSplineData(parsedData.data, store.dispatch)
 
-                parsedData.data.filter(isFinnhubTrade).forEach(({ s, p }) => {
+                parsedData.data.filter(isFinnhubTrade).forEach(({ parsedSymbol, parsedPrice }: any) => {
                     store.dispatch(selectionSlice.actions.updateCurrentPrice({
-                        symbol: s,
-                        currentPrice: p
+                        symbol: parsedSymbol,
+                        currentPrice: parsedPrice
                     }));
                 });
             }

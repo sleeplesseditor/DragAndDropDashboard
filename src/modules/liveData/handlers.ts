@@ -1,7 +1,7 @@
 import {
-    areaSplineUpdateReducer,
+    liveDataSliceUpdateReducer,
     type LiveTick,
-} from "@modules/area-spline/slice";
+} from "@modules/liveData/slice";
 
 const isLiveTick = (value: unknown): value is LiveTick => {
     if (typeof value !== "object" || value === null) return false;
@@ -18,12 +18,12 @@ const isLiveTick = (value: unknown): value is LiveTick => {
 
 const handleUpdateAreaSplineData = (
     data: unknown[],
-    dispatch: (action: ReturnType<typeof areaSplineUpdateReducer>) => unknown
+    dispatch: (action: ReturnType<typeof liveDataSliceUpdateReducer>) => unknown
 ) => {
     const ticks = data.filter(isLiveTick);
     
     if (ticks.length > 0) {
-        dispatch(areaSplineUpdateReducer(ticks));
+        dispatch(liveDataSliceUpdateReducer(ticks));
     }
 }
 

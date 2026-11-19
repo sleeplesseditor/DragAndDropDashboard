@@ -50,8 +50,8 @@ export const selectStockSymbol = createAsyncThunk(
             }));
         }
 
-        // Used for testing – change back to symbol when done
         dispatch(selectionSlice.actions.setStockSymbol({ symbol }));
+
         connection.send(JSON.stringify({
             type: "subscribe",
             symbol,
@@ -78,10 +78,7 @@ export const selectExchange = createAsyncThunk(
 
 export const fetchQuote = createAsyncThunk(
     "selection/fetchQuote",
-    async ({ symbol }: { symbol: string }, { dispatch, getState }) => {
-        // const previousSymbol = (getState() as RootState).selection.symbol;
-        // if (previousSymbol === symbol) return;
-
+    async ({ symbol }: { symbol: string }, { dispatch }) => {
         const res = await fetch(`https://finnhub.io/api/v1/quote?symbol=${symbol}&token=${import.meta.env["VITE_FINNHUB_API_KEY"]}`);
 
         const quoteData = await res.json();

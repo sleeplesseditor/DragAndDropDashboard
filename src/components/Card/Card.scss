@@ -53,6 +53,15 @@
         cursor: pointer;
         color: #111;
     }
+
+    &__title {
+        line-height: 18px;
+        text-wrap: auto;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        width: 100%;
+        overflow: hidden;
+    }
 }
 
 .card-content__container {

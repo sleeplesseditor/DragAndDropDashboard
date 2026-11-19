@@ -6,7 +6,7 @@ export type LiveTick = {
   v?: number;
 };
 
-export interface AreaSplineState {
+export interface LiveDataState {
   data: Array<[number, number]>;
   volumeData: Array<[number, number]>;
   twoPaneData: {
@@ -15,7 +15,7 @@ export interface AreaSplineState {
   };
 }
 
-const initialState: AreaSplineState = {
+const initialState: LiveDataState = {
   data: [],
   volumeData: [],
   twoPaneData: {
@@ -28,11 +28,11 @@ const MAX_LINE_POINTS = 500;
 export const TWO_PANE_BUCKET_MS = 5000;
 const MAX_TWO_PANE_POINTS = 120;
 
-export const areaSplineSlice = createSlice({
+export const liveDataSlice = createSlice({
     name: "liveData",
     initialState,
     reducers: {
-        areaSplineUpdateReducer: (state, action: PayloadAction<LiveTick[]>) => {
+        liveDataSliceUpdateReducer: (state, action: PayloadAction<LiveTick[]>) => {
             const points = action.payload
                 .filter(({ t, p }) => Number.isFinite(t) && Number.isFinite(p))
                 .map(({ t, p }): [number, number] => [t, p]);
@@ -102,5 +102,5 @@ export const areaSplineSlice = createSlice({
     },
 });
 
-export const { areaSplineUpdateReducer } = areaSplineSlice.actions;
-export default areaSplineSlice.reducer;
+export const { liveDataSliceUpdateReducer } = liveDataSlice.actions;
+export default liveDataSlice.reducer;

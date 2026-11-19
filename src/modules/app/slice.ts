@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { Connection } from '@socket/Connection';
 import { ConnectionStatus } from '@socket/types/ConnectionStatus';
 import type { RootState } from '@modules/redux/store';
-import { fetchQuote, type Exchange } from '@modules/selection/slice';
+import { fetchQuote } from '@modules/selection/slice';
 
 const CHECK_CONNECTION_TIMEOUT_IN_MS = 100;
 export const SUBSCRIPTION_TIMEOUT_IN_MS = 2000
@@ -34,17 +34,6 @@ export const bootstrapApp = createAsyncThunk("app/bootstrap",
             symbol,
         }));
 
-
-        
-
-        // currencyPairs.forEach((currencyPair: string) => {
-        //     setTimeout(() => {
-        //         dispatch(tickerSubscribeToSymbol({ symbol: currencyPair }));
-        //         dispatch(candlesSubscribeToSymbol({ symbol: currencyPair, timeframe: DEFAULT_TIMEFRAME }));
-        //     }, SUBSCRIPTION_TIMEOUT_IN_MS)
-        // });
-
-        // return currencyPairs[0]; 
         return
     }
 )
