@@ -12,7 +12,7 @@ const CardContent = (props: CardContentProps) => {
         switch (chartType) {
             case "Live Price Update":
                 return <LiveTickLine />;
-            case "Synchronised Price and Volume Chart":
+            case "Synchronised Price and Volume":
                 return <TwoPane />;
             case "Live Price Gauge":
                 return <BulletChart />;

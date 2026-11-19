@@ -17,7 +17,7 @@ type SymbolOption = {
   label: string;
 };
 
-export type CardType = "Live Price Update" | "Synchronised Price and Volume Chart" | "Live Price Gauge";
+export type CardType = "Live Price Update" | "Synchronised Price and Volume" | "Live Price Gauge";
 
 type SelectionBarProps = {
   canvasRef: React.RefObject<HTMLDivElement | null>;
@@ -30,7 +30,7 @@ const previewImageSelection = (type: CardType) => {
   switch (type) {
     case "Live Price Update":
       return LivePriceUpdate;
-    case "Synchronised Price and Volume Chart":
+    case "Synchronised Price and Volume":
       return TwoPane;
     case "Live Price Gauge":
       return BulletChartImg; 
@@ -72,7 +72,7 @@ type: CardType;
   );
 }
 
-const cardTypes: CardType[] = ["Live Price Update", "Synchronised Price and Volume Chart", "Live Price Gauge"];
+const cardTypes: CardType[] = ["Live Price Update", "Synchronised Price and Volume", "Live Price Gauge"];
 
 const SelectionBar = ({ selectionBarRef, usedTypes, onDrop }: SelectionBarProps) => {
   const dispatch = useDispatch<AppDispatch>();
