@@ -28,7 +28,7 @@ const initialState: SubscriptionStatus = {
 export const testCall = createAsyncThunk(
     "subscriptions/testCall",
     async (_, { extra, getState }) => {
-        const state = getState() as typeof RootState;
+        const state = getState() as any;
 
         console.log("Current state in testCall:", state);
 

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import LiveTickLine from '@components/Charts/LiveTickLine';
 import TwoPane from '@components/Charts/TwoPane';
 import BulletChart from '@components/Charts/BulletChart';
